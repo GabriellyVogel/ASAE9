@@ -11,6 +11,12 @@ class ClienteController extends Controller
     	return view("tela_cadastro_cliente");
     }
 
+    function telaAteracao($id){
+        $cliente = Cliente::find($id);
+
+        return view("tela_alterar_cliente", [ "u" => $cliente ]);
+    }
+
     function adicionar(Request $req){
     	$nome = $req->input('nome');
     	$endereco = $req->input('endereco');
@@ -27,11 +33,44 @@ class ClienteController extends Controller
         
 
     	if ($cliente->save()){
-    		return redirect()->route('listar');
+    		$msg = "Cliente: ". $nome. " foi cadastrado(a) com sucesso!";
     	}else{
     		$msg = "Cliente não foi cadatrado.";
     	}
     	return view("resultado", ["mensagem" => $msg]);
+    }
+    function alterar(Request $req, $id){
+        $nome = $req->input('nome');
+        $endereco = $req->input('endereco');
+        $cep = $req->input('cep');
+        $estado = $req->input('estado');
+        $cidade = $req->input('cidade');
+
+        $cliente = Cliente::find($id);
+        $cliente->nome = $nome;
+        $cliente->endereco = $endereco;
+        $cliente->cep = $cep;
+        $cliente->estado = $estado;
+        $cliente->cidade = $cidade;
+        
+
+        if ($cliente->save()){
+            $msg = "Cliente: $nome foi Alterado(a) com sucesso!";
+        }else{
+            $msg = "Cliente não foi Alterado.";
+        }
+        return view("resultado", ["mensagem" => $msg]);
+    }
+
+    function excluir($id){
+        $cliente = Cliente::find($id);
+
+        if($cliente->delete()){
+             $msg = "Cliente excluído com sucesso!";
+        }else{
+            $msg = "Cliente não foi excluído.";
+        }
+        return view("resultado", ["mensagem" => $msg]);
     }
 
     function listar(){
