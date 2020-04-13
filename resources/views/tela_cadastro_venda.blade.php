@@ -6,13 +6,13 @@
 		@csrf
 		<div class="form-group">
 			<label>Valor:</label>
-			<input style="border-color: #C7C79E; background-color: #F3ECD8;" class="form-control" type="text" name="valor" placeholder="Ex.: 500.00">
+			<input style="border-color: #C7C79E; background-color: #F3ECD8;" class="form-control" type="number" step="0.01" name="valor" placeholder="Ex.: 500,00">
 		</div>
 		<div class="form-group">
 			<select style="border-color: #C7C79E; background-color: #F3ECD8;" class="custom-select" name="id_cliente">
 				<option selected>Cliente:</option>
-				@foreach(App\Cliente::all() as $e)
-				<option value="{{ $e->id }}">{{ $e->nome }}</option>
+				@foreach($cs as $c)
+				<option value="{{ $c->id }}">{{ $c->nome }}</option>
 				@endforeach
 			</select>
 		</div>

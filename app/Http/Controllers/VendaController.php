@@ -10,7 +10,13 @@ use App\Cliente;
 class VendaController extends Controller
 {
      function telaVenda(){
-        return view("tela_cadastro_venda");
+        $cs = Cliente::all();
+
+        if (session()->has("login")){
+            return view("tela_cadastro_venda", ["cs" => $cs]);
+        }
+
+        return view("acesso_negado");
     }
 
     function adicionarVenda(Request $req){
@@ -30,9 +36,16 @@ class VendaController extends Controller
         }
         return view("resultadoVenda", ["mensagem" => $msg]);
     }
-     function listaVenda(){
-    	$venda = Venda::all();
+     function listaVenda($id){
+    	$cs = Cliente::find($id);
 
-    	return view("listaVenda", [ "vs" => $venda]);
+        if (session()->has("login")){
+            if($cs){
+                return view("listaVenda", ["cs" => $cs]);
+            }else{
+                return redirect()->route('listar'); 
+            }
+        }
+        return view("acesso_negado");
     }
 }

@@ -8,13 +8,19 @@ use App\Cliente;
 class ClienteController extends Controller
 {
     function telaCadastro(){
-    	return view("tela_cadastro_cliente");
+    	if (session()->has("login")){
+            return view("tela_cadastro_cliente");
+        }
+
+        return view("acesso_negado");
     }
 
     function telaAteracao($id){
         $cliente = Cliente::find($id);
-
-        return view("tela_alterar_cliente", [ "u" => $cliente ]);
+        if (session()->has("login")){
+            return view("tela_alterar_cliente", [ "u" => $cliente ]);
+        }
+        return view("acesso_negado");
     }
 
     function adicionar(Request $req){
@@ -75,7 +81,9 @@ class ClienteController extends Controller
 
     function listar(){
     	$clientes = Cliente::all();
-
-    	return view("lista", [ "us" => $clientes]);
+        if (session()->has("login")){
+            return view("lista", [ "us" => $clientes]);
+        }
+        return view("acesso_negado");
     }
 }

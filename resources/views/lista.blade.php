@@ -3,7 +3,7 @@
 <div style="background-color: #74404C;" class="jumbotron jumbotron-fluid mt-5 rounded">
 	<h1 class="ml-3" style="color: #F3ECD8;">Lista de Clientes</h1>
 	<div class="container">
-		<table class="table table-borderless rounded">
+		<table class="table table-borderless table-striped rounded">
 			<thead style="background-color: #F3ECD8;">
 				<tr style="color: #74404C;">
 					<th scope="col">Nome</th>
@@ -23,8 +23,9 @@
 					<td>{{ $u->estado }}</td>
 					<td>{{ $u->cidade }}</td>
 					<td>
-						<a class="btn ml-3" style="border-color: #C7C79E; background-color: #74404C; color: #F3ECD8;" href="{{ route('cliente_alt', ['id' => $u->id ])}}">Alterar</a>
-						<a class="btn ml-3" style="border-color: #C7C79E; background-color: #74404C; color: #F3ECD8;" onclick="exclui({{ $u->id }})">Excluir</a>
+						<a class="btn" style="border-color: #C7C79E; background-color: #74404C; color: #F3ECD8;" href="{{ route('cliente_alt', ['id' => $u->id ])}}">Alterar</a>
+						<a class="btn" style="border-color: #C7C79E; background-color: #74404C; color: #F3ECD8;" onclick="exclui({{ $u->id }})">Excluir</a>
+						<a class="btn" style="border-color: #C7C79E; background-color: #74404C; color: #F3ECD8;" href="{{ route('listarv', ['id' => $u->id ])}}">Vendas</a>
 					</td>
 				</tr>
 				@endforeach

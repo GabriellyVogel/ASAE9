@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+//Clientes 
 Route::get('/cliente/cadastro', 'ClienteController@telaCadastro')->name('cliente_cds');
 Route::post('/cliente/adicionar', 'ClienteController@adicionar')->name('cliente_add');
 
@@ -26,7 +27,16 @@ Route::get('/cliente/excluir/{id}', 'ClienteController@excluir')->name('cliente_
 
 Route::get('/cliente/listar', 'ClienteController@listar')->name('listar');
 
+//Vendas
 Route::get('/venda/cadastro', 'VendaController@telaVenda')->name('venda_cds');
 Route::post('/venda/adicionar', 'VendaController@adicionarVenda')->name('venda_add');
 
-Route::get('/venda/listar', 'VendaController@listaVenda')->name('listarv');
+Route::get('/venda/listar/{id}', 'VendaController@listaVenda')->name('listarv');
+
+//Usuários
+Route::get('/usuario/cadastro', 'UsuarioController@telaCadastro')->name('usuario_cds');
+Route::post('/usuario/adicionar', 'UsuarioController@adicionar')->name('usuario_add');
+
+Route::get('/tela_login', 'AppController@tela_login')->name('login');
+Route::post('/login', 'AppController@login')->name('logar');
+Route::get('/logout', 'AppController@logout')->name('logout');
