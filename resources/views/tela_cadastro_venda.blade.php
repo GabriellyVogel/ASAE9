@@ -5,10 +5,6 @@
 	<form class="ml-5 mr-5" method="post" action="{{route('venda_add')}}" style="color: #F3ECD8;">
 		@csrf
 		<div class="form-group">
-			<label>Valor:</label>
-			<input style="border-color: #C7C79E; background-color: #F3ECD8;" class="form-control" type="number" step="0.01" name="valor" placeholder="Ex.: 500,00">
-		</div>
-		<div class="form-group">
 			<select style="border-color: #C7C79E; background-color: #F3ECD8;" class="custom-select" name="id_cliente">
 				<option selected>Cliente:</option>
 				@foreach($cs as $c)

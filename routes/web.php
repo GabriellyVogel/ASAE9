@@ -32,6 +32,12 @@ Route::get('/venda/cadastro', 'VendaController@telaVenda')->name('venda_cds');
 Route::post('/venda/adicionar', 'VendaController@adicionarVenda')->name('venda_add');
 
 Route::get('/venda/listar/{id}', 'VendaController@listaVenda')->name('listarv');
+Route::get('/venda/lista', 'VendaController@listar')->name('lista_vnd');
+
+Route::get('/venda/{id}/itens', 'VendaController@telaAddItem')->name('itens');
+Route::post('/venda/{id}/itens_add', 'VendaController@adicionarItem')->name('itens_add');
+Route::get('/venda/{id}/itens/remover/{id_pivot}', 'VendaController@excluirItem')->name('itens_exc');
+Route::get('/venda/{id}/itens/lista', 'VendaController@itensVenda')->name('listai');
 
 //Usuários
 Route::get('/usuario/cadastro', 'UsuarioController@telaCadastro')->name('usuario_cds');
@@ -40,3 +46,11 @@ Route::post('/usuario/adicionar', 'UsuarioController@adicionar')->name('usuario_
 Route::get('/tela_login', 'AppController@tela_login')->name('login');
 Route::post('/login', 'AppController@login')->name('logar');
 Route::get('/logout', 'AppController@logout')->name('logout');
+
+//Tipo de Produtos
+Route::get('/tipo/cadastro', 'TipoProdutoController@telaCadastro')->name('tipo_cds');
+Route::post('/tipo/adicionar', 'TipoProdutoController@adicionar')->name('tipo_add');
+
+//Produtos
+Route::get('/produto/cadastro', 'ProdutoController@telaCadastro')->name('produto_cds');
+Route::post('/produto/adicionar', 'ProdutoController@adicionar')->name('produto_add');

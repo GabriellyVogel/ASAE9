@@ -9,6 +9,7 @@
 					<th scope="col">#Venda</th>
 					<th scope="col">Valor</th>
 					<th scope="col">Descrição</th>
+					<th scope="col">Opções</th>
 				</tr>
 			</thead>
 			<tbody style="background-color: #F3ECD8;">
@@ -17,6 +18,9 @@
 					<td>{{ $v->id }}</td>
 					<td>{{ $v->valor }}</td>
 					<td>{{ $v->descricao }}</td>
+					<td>
+						<a class="btn" style="border-color: #C7C79E; background-color: #74404C; color: #F3ECD8;" href="{{ route('listai', ['id' => $v->id])}}">Itens</a>
+					</td>
 				</tr>
 				@endforeach
 			</tbody>
