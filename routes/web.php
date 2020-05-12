@@ -31,7 +31,7 @@ Route::get('/cliente/listar', 'ClienteController@listar')->name('listar');
 Route::get('/venda/cadastro', 'VendaController@telaVenda')->name('venda_cds');
 Route::post('/venda/adicionar', 'VendaController@adicionarVenda')->name('venda_add');
 
-Route::get('/venda/listar/{id}', 'VendaController@listaVenda')->name('listarv');
+Route::get('/venda/listar/{id}', 'VendaController@listaVenda')->name('listarv')->middleware('auth');
 Route::get('/venda/lista', 'VendaController@listar')->name('lista_vnd');
 
 Route::get('/venda/{id}/itens', 'VendaController@telaAddItem')->name('itens');
@@ -54,3 +54,7 @@ Route::post('/tipo/adicionar', 'TipoProdutoController@adicionar')->name('tipo_ad
 //Produtos
 Route::get('/produto/cadastro', 'ProdutoController@telaCadastro')->name('produto_cds');
 Route::post('/produto/adicionar', 'ProdutoController@adicionar')->name('produto_add');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
