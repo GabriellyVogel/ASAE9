@@ -71,6 +71,11 @@ class ClienteController extends Controller
     function excluir($id){
         $cliente = Cliente::find($id);
 
+        foreach ($cliente->vendas as $v) {
+            $v->delete();
+        }
+
+
         if($cliente->delete()){
              $msg = "Cliente excluído com sucesso!";
         }else{

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Usuario;
+use Auth;
 
 class AppController extends Controller
 {
@@ -39,7 +40,8 @@ class AppController extends Controller
     }
 
     function logout(){
-        session()->forget("login");
+
+        Auth::logout();
 
         return redirect()->route("login");
     }
